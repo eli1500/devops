@@ -10,6 +10,7 @@
 
 # production
 /build
+newKey.pem
 
 # misc
 .DS_Store
