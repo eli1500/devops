@@ -5,11 +5,11 @@
   tasks:
     - name: Launch EC2 Instance
       ec2_instance:
-        instance_type: t3.medium
+        instance_type: t2.medium
         image_id: ami-07caf09b362be10b8
         region: us-east-1
         key_name: newKey
-        vpc_subnet_id: subnet-005d6d56d85f70b3e
+        vpc_subnet_id: subnet-058d48f8f4b09398e
         tags:
           Name: Eshop
         count: 1
