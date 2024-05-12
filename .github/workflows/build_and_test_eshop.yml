@@ -126,7 +126,7 @@ jobs:
           directory: ./deployToAnsible
 
           # Optional, SSH private key
-          key: ${{secrets.AWS_SSH_KEY}}
+          key: newKey.pem
 
           # Optional, encr ypted vault password
           # vault_password: ${{secrets.VAULT_PASSWORD}}
