@@ -94,48 +94,49 @@ jobs:
         run: |
           npm run test -- --colors
 
-#  Deploy:
-#    needs: [Build, Test]
-#    if: ${{ github.ref == 'refs/heads/master' }}
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Code checkout
-#        uses: actions/checkout@v4.1.1
-#        with:
-#          token: ${{secrets.WORKFLOW_TOKEN }}
-#
-#
-#      - name: Setup python
-#        uses: actions/checkout@v4
-##              actions/setup-python@v5
-#        with:
-#          python-version: '3.10'
-#      - run: |
-#          source /opt/pipx/venvs/ansible-core/bin/activate
-#          python -m pip install boto
-#          python -m pip install boto3
-#
-#
-#      - name: Run playbook
-#        uses: dawidd6/action-ansible-playbook@v2
-#        with:
-#          # Required, playbook filepath
-#          playbook: deploy.yml
-#          # Optional, directory where playbooks live
-#          directory: ./deployToAnsible
-#
-#          # Optional, SSH private key
-#          key: newKey.pem
-#
-#          # Optional, encr ypted vault password
-#          # vault_password: ${{secrets.VAULT_PASSWORD}}
-#
-#          # Optional, additional flags to pass to ansible-playbook
-#          options: |
-#            --user ec2-user
-#            --limit group1
-#            --extra-vars hello=there "access_key=${{ secrets.AWS_ACCESS_KEY }} secret_key=${{ secrets.AWS_SECRET_KEY }} session_token=${{ secrets.AWS_SESSION_TOKEN }}"
+  Deploy:
+    needs: [Build, Test]
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Debug GitHub Ref
+        run: echo "Debuggujem... GitHub Ref is " ${{ github.ref }}
+      - name: Code checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          token: ${{secrets.WORKFLOW_TOKEN }}
+
+
+      - name: Setup python
+        uses: actions/checkout@v4
+#              actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: |
+          source /opt/pipx/venvs/ansible-core/bin/activate
+          python -m pip install boto
+          python -m pip install boto3
+
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: deploy.yml
+          # Optional, directory where playbooks live
+          directory: ./deployToAnsible
+
+          # Optional, SSH private key
+          key: newKey.pem
+
+          # Optional, encr ypted vault password
+          # vault_password: ${{secrets.VAULT_PASSWORD}}
+
+          # Optional, additional flags to pass to ansible-playbook
+          options: |
+            --user ec2-user
+            --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY }} secret_key=${{ secrets.AWS_SECRET_KEY }} session_token=${{ secrets.AWS_SESSION_TOKEN }}"
 
 
 
