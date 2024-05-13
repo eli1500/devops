@@ -135,7 +135,7 @@ jobs:
           options: |
             --user ec2-user
             --limit group1
-            --extra-vars hello=there "access_key=${{ secrets.AWS_ACCESS_KEY }} secret_key=${{ secrets.AWS_SECRET_KEY }} session_token=${{ secrets.AWS_SESSION_TOKEN }}"
+            --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY }} secret_key=${{ secrets.AWS_SECRET_KEY }} session_token=${{ secrets.AWS_SESSION_TOKEN }}"
 
 
 

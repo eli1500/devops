@@ -5,6 +5,7 @@
   tasks:
     - name: Launch EC2 Instance
       ec2_instance:
+        name: "semestralka2"
         instance_type: t2.medium
         image_id: ami-07caf09b362be10b8
         region: us-east-1
@@ -72,6 +73,7 @@
         name: eshop
         tag: latest
         source: build
+        become: yes
     - name: Run Eshop Docker
       docker_container:
         name: eshop
@@ -79,6 +81,7 @@
         state: started
         ports:
           - "80:3000"
+        become: yes
     - name: Wait for eshop to run
       wait_for:
         port:
