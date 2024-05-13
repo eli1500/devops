@@ -54,9 +54,11 @@
         state: started
         enabled: yes
 
-#    - name: Start Docker
-#      shell: sudo systemctl enable docker
-#      become: yes
+    - name: Start Docker
+      service:
+        name: docker
+        state: started
+      become: yes
 
     - name: Set proper rights to Docker service
       shell: usermod -a -G docker ec2-user
