@@ -116,7 +116,7 @@ jobs:
           python-version: '3.10'
       - run: |
           source /opt/pipx/venvs/ansible-core/bin/activate
-          python -m pip install boto
+          python -m pip install botocore
           python -m pip install boto3
 
 
@@ -129,7 +129,7 @@ jobs:
           directory: ./deployToAnsible
 
           # Optional, SSH private key
-          key: newKey.pem
+          key: ${{ secrets.AWS_KEY }}
 
           # Optional, encr ypted vault password
           # vault_password: ${{secrets.VAULT_PASSWORD}}
@@ -138,9 +138,6 @@ jobs:
           options: |
             --user ec2-user
             --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY }} secret_key=${{ secrets.AWS_SECRET_KEY }} session_token=${{ secrets.AWS_SESSION_TOKEN }}"
-
-
-
 
 
 
