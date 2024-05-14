@@ -116,8 +116,8 @@ jobs:
           python-version: '3.10'
       - run: |
           source /opt/pipx/venvs/ansible-core/bin/activate
-          python -m pip install botocore
           python -m pip install boto3
+          python -m pip install botocore
 
 
       - name: Run playbook
